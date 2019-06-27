@@ -26,20 +26,20 @@ var maxSubArray = function(nums) {
 
         if (currentSum > sum) {
             sum = currentSum;
-		      	e = i;
+	    e = i;
         }
         if(currentSum < 0) {
             currentSum = 0;
-			      s = i+1;
+	    s = i+1;
         }
     }
     if (sum < 0) {
         return Math.max(...nums);
 	
     } else {
-		  for (let j = s; j < e+1; j++) {
-			  console.log(nums[j]) // 具体的元素也可以拿出来，只写了正数的情况：
-		  }
+	for (let j = s; j < e+1; j++) {
+	    console.log(nums[j]) // 具体的元素也可以拿出来，只写了正数的情况：
+	}
         return sum;
     }
 };
