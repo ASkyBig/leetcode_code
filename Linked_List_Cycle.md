@@ -25,3 +25,51 @@
 解释：链表中没有环。
 ```
 ![](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist_test3.png)
+
+#### 利用数组保存遍历的节点，判断是否包含已经遍历过的
+
+```
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var hasCycle = function(head) {
+    if (head === null || head.next === null) return false;
+    let arr = []
+    arr.push(head)
+    while(head.next !== null) {
+        if (arr.includes(head.next)) return true;
+        head = head.next;
+        arr.push(head)
+    }
+    return false;
+};
+```
+
+#### 不同速度的双指针
+
+这个和两个人在操场跑步何时在第二圈相遇类似
+
+```
+var hasCycle = function(head) {
+    if (head === null || head.next === null ) {
+        return false;
+    }
+    let slowNode = head;
+    let fastNode = head.next;
+    while (fastNode !== slowNode) {
+        if (fastNode === null || fastNode.next === null) return false;
+        slowNode = slowNode.next;
+        fastNode = fastNode.next.next;
+    }
+    return true;
+};
+```
